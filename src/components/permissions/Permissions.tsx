@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss'
 import { PermissionsData, usePermissions } from '../../hooks/usePermissions'
 import { Post, Put } from '../../lib'
 import { PermissionsTableRow } from '../PermissionsTableRow'
+import { BASE_URL_PERMISSIONS } from '../constants/connection'
 import PermissionModal from './PermissionModal'
 
 const useStyles = createUseStyles({
@@ -61,12 +62,12 @@ export const Permissions = () => {
       permissionTypeId: formValues.permissionTypeId
     }
     if (formValues.isNew) {
-      const response: { data: { id: number } } = await Post('https://localhost:7169/api/Permissions', data)
+      const response: { data: { id: number } } = await Post(`${BASE_URL_PERMISSIONS}`, data)
       formValues.id = response?.data?.id
       delete formValues.isNew
       setPermissions(prev => [...prev, formValues])
     } else {
-      Put(`https://localhost:7169/api/Permissions/${formValues.id}`, data)
+      Put(`${BASE_URL_PERMISSIONS}/${formValues.id}`, data)
       delete formValues.isNew
       setPermissions(prev => prev.map(c => (c.id === formValues.id ? formValues : c)))
     }
