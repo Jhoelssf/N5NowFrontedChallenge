@@ -8,4 +8,11 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 
-- implement map and add in lib
+- To run image
+- In the root of project run these commands
+```cmd
+docker build -t n5_permissions_frontend .
+```
+```cmd
+docker run -d -p 8089:8089 --name frontend n5_permissions
+```
